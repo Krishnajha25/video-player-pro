@@ -1,3 +1,17 @@
+## [1.0.2](https://github.com/Krishnajha25/video-player-pro/compare/v1.0.1...v1.0.2) (2025-01-07)
+
+
+### Bug Fixes
+
+* add permissions for action ([9c5cb59](https://github.com/Krishnajha25/video-player-pro/commit/9c5cb594679b3f0242561657df3132c99ba78cf6))
+* debug npmrc ([711082f](https://github.com/Krishnajha25/video-player-pro/commit/711082fc612bc538fc636189b47c192f39cc0c44))
+* debug release ([89739a1](https://github.com/Krishnajha25/video-player-pro/commit/89739a1b4311e225236d07d77e9ce8c953647004))
+* minor change ([f0e4bda](https://github.com/Krishnajha25/video-player-pro/commit/f0e4bda56614b884ba202b773d40c83216ccf3c1))
+* try release approach ([db2572e](https://github.com/Krishnajha25/video-player-pro/commit/db2572e889b3e3a223bb49c73231ab003f6c7dd1))
+* try with vars ([73bd2f4](https://github.com/Krishnajha25/video-player-pro/commit/73bd2f44e7880445305373f22fec8d8345b6912f))
+* update the release system ([b862a99](https://github.com/Krishnajha25/video-player-pro/commit/b862a9977d4f6287a768b58bf5fbee64a0a4c570))
+* verify npm token ([71783a1](https://github.com/Krishnajha25/video-player-pro/commit/71783a1c4fcb5efa98a2cb925bbd8047a756797b))
+
 ## [1.0.1](https://github.com/Krishnajha25/video-player-pro/compare/v1.0.0...v1.0.1) (2025-01-07)
 
 
