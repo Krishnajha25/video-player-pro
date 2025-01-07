@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/Krishnajha25/video-player-pro/compare/v1.0.4...v1.0.5) (2025-01-07)
+
+
+### Bug Fixes
+
+* try npm publish ([0d8467c](https://github.com/Krishnajha25/video-player-pro/commit/0d8467cd5d2ef83d140433987c24198489b4612c))
+
 ## [1.0.4](https://github.com/Krishnajha25/video-player-pro/compare/v1.0.3...v1.0.4) (2025-01-07)
 
 
