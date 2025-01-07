@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/Krishnajha25/video-player-pro/compare/v1.0.2...v1.0.3) (2025-01-07)
+
+
+### Bug Fixes
+
+* release workflow ([3bf9bc9](https://github.com/Krishnajha25/video-player-pro/commit/3bf9bc9d66212d8a88d12b10c01d6fc4f04d8d42))
+
 ## [1.0.2](https://github.com/Krishnajha25/video-player-pro/compare/v1.0.1...v1.0.2) (2025-01-07)
 
 
