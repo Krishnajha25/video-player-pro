@@ -12,14 +12,12 @@ jobs:
       packages: write
       issues: write
       pull-requests: write
-    name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Find .npmrc files
-        run: find . -name ".npmrc" -type f || true
+        with:
+          fetch-depth: 0  # Full history for Semantic Release to push tags/commits
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -28,12 +26,23 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           always-auth: true
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run semantic-release
+      - name: Build Project
+        run: npm run build  # Ensure your project is built before publishing
+
+      - name: Run Semantic Release (without npm publish)
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
+
+      - name: Fetch latest changes
+        run: git fetch origin main
+
+      - name: Publish package manually
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
