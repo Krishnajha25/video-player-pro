@@ -17,7 +17,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Full history for Semantic Release to push tags/commits
+          fetch-depth: 0  # Ensure full history for Semantic Release
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -32,15 +32,18 @@ jobs:
         run: npm ci
 
       - name: Build Project
-        run: npm run build  # Ensure your project is built before publishing
+        run: npm run build  # Ensure your project builds before publishing
 
       - name: Run Semantic Release (without npm publish)
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
 
-      - name: Fetch latest changes
-        run: git fetch origin main
+      # Pull the latest changes (including version bump) after Semantic Release
+      - name: Update local repository to latest commit
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
 
       - name: Publish package manually
         run: npm publish
