@@ -18,6 +18,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Find .npmrc files
+        run: find . -name ".npmrc" -type f || true
+
+      - name: Display .npmrc (sanitized)
+        run: |
+          if [ -f .npmrc ]; then
+            # Print lines that do not contain sensitive info like auth tokens
+            grep -v "//registry.npmjs.org/:_authToken=" .npmrc || true
+          else
+            echo ".npmrc not found in the working directory."
+          fi
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
