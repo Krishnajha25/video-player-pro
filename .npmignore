@@ -1,0 +1,17 @@
+# Exclude development files
+node_modules/
+src/
+tests/
+example/
+.github/
+.gitignore
+.vscode/
+
+# Exclude build tools and config files
+rollup.config.*.js
+tsconfig.json
+package-lock.json
+.npmrc
+
+# Exclude other unnecessary files
+*.log
