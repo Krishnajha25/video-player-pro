@@ -21,7 +21,7 @@ jobs:
 
       - name: Debug NPM Authentication
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{ vars.NPM_TOKEN }}" > ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
           npm whoami
         env:
           NPM_TOKEN: ${{ vars.NPM_TOKEN }}
@@ -40,7 +40,7 @@ jobs:
 
       - name: Run Semantic Release
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{ vars.NPM_TOKEN }}" > ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
           npx semantic-release
         env:
           NPM_TOKEN: ${{ vars.NPM_TOKEN }}
