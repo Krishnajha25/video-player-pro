@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5", // Transpile to ES5 for compatibility
+    "module": "esnext", // Ensure modules are output as ESNext
+    "declaration": true, // Generate type declaration files
+    "outDir": "dist", // Output directory for compiled files
+    "strict": true, // Enable strict type-checking options
+    "esModuleInterop": true, // Enable interoperability for CommonJS
+    "skipLibCheck": true, // Skip library type checks for faster builds
+    "moduleResolution": "node", // Use Node module resolution
+    "sourceMap": true, // Generate source maps for debugging
+    "jsx": "react" // Support JSX (if using React)
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
