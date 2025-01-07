@@ -21,29 +21,16 @@ jobs:
       - name: Find .npmrc files
         run: find . -name ".npmrc" -type f || true
 
-      - name: Display .npmrc (sanitized)
+      - name: Verify NPM_TOKEN is set
         run: |
-          if [ -f .npmrc ]; then
-            # Print lines that do not contain sensitive info like auth tokens
-            grep -v "//registry.npmjs.org/:_authToken=" .npmrc || true
+          if [ -z "$NPM_TOKEN" ]; then
+            echo "NPM_TOKEN is not set!"
+            exit 1
           else
-            echo ".npmrc not found in the working directory."
+            echo "NPM_TOKEN is set."
           fi
-
-      - name: Check global .npmrc
-        run: |
-          if [ -f ~/.npmrc ]; then
-            echo "Found global .npmrc:"
-            grep -v "//registry.npmjs.org/:_authToken=" ~/.npmrc || true
-          else
-            echo "Global .npmrc not found."
-          fi
-
-      - name: List npm configuration
-        run: npm config list
-
-      - name: List npm-related environment variables
-        run: env | grep -i npm
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 
       - name: Setup Node.js
