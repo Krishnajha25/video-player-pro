@@ -30,6 +30,22 @@ jobs:
             echo ".npmrc not found in the working directory."
           fi
 
+      - name: Check global .npmrc
+        run: |
+          if [ -f ~/.npmrc ]; then
+            echo "Found global .npmrc:"
+            grep -v "//registry.npmjs.org/:_authToken=" ~/.npmrc || true
+          else
+            echo "Global .npmrc not found."
+          fi
+
+      - name: List npm configuration
+        run: npm config list
+
+      - name: List npm-related environment variables
+        run: env | grep -i npm
+
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
