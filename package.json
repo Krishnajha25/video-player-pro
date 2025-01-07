@@ -1,6 +1,6 @@
 {
   "name": "video-player-pro",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -37,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Krishnajha25/video-player-pro"
+    "url": "git+https://github.com/Krishnajha25/video-player-pro.git"
   },
   "bugs": {
     "url": "https://github.com/Krishnajha25/video-player-pro/issues"

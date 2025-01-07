@@ -21,23 +21,14 @@ jobs:
       - name: Find .npmrc files
         run: find . -name ".npmrc" -type f || true
 
-      - name: Verify NPM_TOKEN is set
-        run: |
-          if [ -z "$NPM_TOKEN" ]; then
-            echo "NPM_TOKEN is not set!"
-            exit 1
-          else
-            echo "NPM_TOKEN is set."
-          fi
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
+          always-auth: true
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Install dependencies
         run: npm ci
