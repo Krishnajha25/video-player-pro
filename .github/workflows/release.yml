@@ -24,7 +24,7 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=${{ vars.NPM_TOKEN }}" > ~/.npmrc
           npm whoami
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ vars.NPM_TOKEN }}
 
       - name: Check .npmrc
         run: cat ~/.npmrc
