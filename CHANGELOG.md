@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Krishnajha25/video-player-pro/compare/v1.0.0...v1.0.1) (2025-01-07)
+
+
+### Bug Fixes
+
+* this is a test build fix ([e49c7e8](https://github.com/Krishnajha25/video-player-pro/commit/e49c7e8c02e44e65902df5a5de111b439fd10415))
+
 # 1.0.0 (2025-01-07)
 
 
