@@ -21,10 +21,10 @@ jobs:
 
       - name: Debug NPM Authentication
         run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
           npm whoami
         env:
-          NPM_TOKEN: ${{ vars.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Check .npmrc
         run: cat ~/.npmrc
@@ -38,10 +38,16 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Debug NPM Token
+        run: |
+          echo "Token length: ${#NPM_TOKEN}"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Run Semantic Release
         run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
           npx semantic-release
         env:
-          NPM_TOKEN: ${{ vars.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
