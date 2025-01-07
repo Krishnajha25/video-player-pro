@@ -8,19 +8,9 @@
       {
         "npmPublish": true,
         "pkgRoot": ".",
-        "tarballDir": "."
+        "registry": "https://registry.npmjs.org/"
       }
     ],
-    [
-      "@semantic-release/github",
-      {
-        "assets": [
-          {
-            "path": "dist/**",
-            "label": "Distribution Files"
-          }
-        ]
-      }
-    ]
+    "@semantic-release/github"
   ]
 }
