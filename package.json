@@ -30,5 +30,13 @@
     "hls.js": "^1.5.18",
     "react": "^19.0.0",
     "tslib": "^2.8.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krishnajha25/video-player-pro"
+  },
+  "bugs": {
+    "url": "https://github.com/Krishnajha25/video-player-pro/issues"
+  },
+  "homepage": "https://github.com/Krishnajha25/video-player-pro#readme"
 }

@@ -7,44 +7,24 @@ on:
 
 jobs:
   release:
-    permissions:
-      contents: write
-      packages: write
-      issues: write
-      pull-requests: write
+    name: Release
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Ensure compatibility with your setup
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
 
-      # Step 3: Cache npm dependencies
-      - name: Cache npm modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - name: Install Dependencies
+        run: npm ci
 
-      # Step 4: Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # Step 5: Install missing 'agent-base' dependency explicitly
-      - name: Install agent-base explicitly
-        run: npm install agent-base
-
-      # Step 7: Run semantic release
-      - name: Run semantic release
+      - name: Run Semantic Release
         env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          HUSKY: 0
         run: npx semantic-release
