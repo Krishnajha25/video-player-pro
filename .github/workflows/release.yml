@@ -7,6 +7,11 @@ on:
 
 jobs:
   release:
+    permissions:
+      contents: write
+      packages: write
+      issues: write
+      pull-requests: write
     name: Release
     runs-on: ubuntu-latest
 
