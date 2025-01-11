@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/Krishnajha25/video-player-pro/compare/v1.0.6...v1.0.7) (2025-01-11)
+
+
+### Bug Fixes
+
+* try to make import fix ([7baefdf](https://github.com/Krishnajha25/video-player-pro/commit/7baefdf99a78f2b083a011fa03b7915ab0318476))
+
 ## [1.0.6](https://github.com/Krishnajha25/video-player-pro/compare/v1.0.5...v1.0.6) (2025-01-07)
 
 
