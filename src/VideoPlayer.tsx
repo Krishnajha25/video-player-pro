@@ -22,75 +22,67 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   subtitles = [],
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const hlsRef = useRef<Hls | null>(null); // Store the HLS instance
   const [qualityLevels, setQualityLevels] = useState<{ label: string; index: number }[]>([]);
   const [selectedQuality, setSelectedQuality] = useState<number>(-1); // -1 means auto
   const [isBuffering, setIsBuffering] = useState(false);
 
   useEffect(() => {
+    console.log("VideoPlayer mounted. Checking HLS support...");
     if (Hls.isSupported() && videoRef.current) {
+      console.log("HLS is supported. Initializing HLS...");
       const hls = new Hls();
+      hlsRef.current = hls; // Save the instance for later use
 
+      console.log("Loading source:", src);
       hls.loadSource(src);
+
+      console.log("Attaching media...");
       hls.attachMedia(videoRef.current);
 
       // Populate quality levels when available
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        console.log("Manifest parsed. Quality levels available.");
         const levels = hls.levels.map((level, index) => ({
           label: `${level.height}p`,
           index,
         }));
+        console.log("Available quality levels:", levels);
         setQualityLevels(levels);
       });
 
-      // Adaptive bitrate adjustment
-      hls.on(Hls.Events.FRAG_LOADED, () => {
-        const bandwidthEstimate = hls.bandwidthEstimate;
-        console.log("Estimated Bandwidth:", bandwidthEstimate, "bps");
-
-        // Optional: Add custom logic to adjust quality dynamically
-        if (bandwidthEstimate < 1000000) {
-          hls.currentLevel = 0; // Force low quality
-        } else if (bandwidthEstimate < 3000000) {
-          hls.currentLevel = 1; // Medium quality
-        } else {
-          hls.currentLevel = -1; // Auto quality
-        }
-      });
-
-      // Buffering indication
+      // Adaptive bitrate adjustment and buffering events
       hls.on(Hls.Events.BUFFER_APPENDING, () => {
         console.log("Buffering in progress...");
-        setIsBuffering(true); // Show buffering indicator
+        setIsBuffering(true);
       });
 
       hls.on(Hls.Events.BUFFER_APPENDED, () => {
         console.log("Buffering completed.");
-        setIsBuffering(false); // Hide buffering indicator
+        setIsBuffering(false);
       });
 
-      hls.on(Hls.Events.BUFFER_EOS, () => {
-        console.log("No more data will be added to the buffer.");
+      hls.on(Hls.Events.ERROR, (event, data) => {
+        console.error("HLS error:", data);
       });
-
-      hls.on(Hls.Events.BACK_BUFFER_REACHED, (event, data) => {
-        console.log(`Back buffer reached at buffer end: ${data.bufferEnd}`);
-      });
-
 
       return () => {
+        console.log("Cleaning up HLS instance...");
         hls.destroy();
+        hlsRef.current = null;
       };
+    } else {
+      console.warn("HLS is not supported on this browser.");
     }
   }, [src]);
 
   // Handle manual quality change
   const handleQualityChange = (level: number) => {
+    console.log("Quality change requested. Selected level:", level);
     setSelectedQuality(level);
-    if (videoRef.current && Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(src);
-      hls.attachMedia(videoRef.current);
-      hls.currentLevel = level; // Update the current level
+    if (hlsRef.current) {
+      hlsRef.current.currentLevel = level; // Update the current level
+      console.log("HLS current level set to:", level);
     }
   };
 
