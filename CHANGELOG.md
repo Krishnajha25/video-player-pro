@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/Krishnajha25/video-player-pro/compare/v1.0.7...v1.0.8) (2025-01-11)
+
+
+### Bug Fixes
+
+* use react 18 ([f96353b](https://github.com/Krishnajha25/video-player-pro/commit/f96353b872d1d29e6ce5daf4d5b625c9d8b8cab0))
+
 ## [1.0.7](https://github.com/Krishnajha25/video-player-pro/compare/v1.0.6...v1.0.7) (2025-01-11)
 
 
